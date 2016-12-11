@@ -6,6 +6,7 @@
 package net.agetsuma.sample.shiro.rest.contoller;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -13,8 +14,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import net.agetsuma.sample.shiro.entity.UserAccount;
 import net.agetsuma.sample.shiro.entity.UserAccountRepository;
+import net.agetsuma.sample.shiro.rest.thymeleaf.ThymeleafViewable;
 import net.agetsuma.sample.shiro.service.auth.SigninService;
-import org.glassfish.jersey.server.mvc.Template;
 
 /**
  * Show top page.
@@ -31,12 +32,15 @@ public class RootController {
     SigninService signinService;
     
     @GET
-    @Template(name = "/index")
-    public List<UserAccount> getUsers() {
+    public ThymeleafViewable getUsers() {
+        HashMap<String, Object> map = new HashMap<>();
         if(!signinService.hasManagerRole()) {
-            return Collections.emptyList();
+            map.put("accountList", Collections.emptyList());
+        } else {
+            List<UserAccount> accountList = userAccountRepository.referAll();
+            map.put("accountList", accountList);
         }
-        return userAccountRepository.referAll();
+        return new ThymeleafViewable("index.html", map);
     }
     
 }

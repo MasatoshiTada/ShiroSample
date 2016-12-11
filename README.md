@@ -1,15 +1,18 @@
 ShiroSample
 ===========
 
-Apache Shiro 1.2 JDBC Realm sample.
+Apache Shiro 1.3 JDBC Realm sample.
+
+Original : Norito AGETSUMA (@n_agetsu)
+Upgrade to 1.3 + Thymeleaf : Masatoshi Tada (@suke_masa)
 
 ![screenshot](site/screen.png)
 
 environment
 -------------
-* GlassFish 4.1 (Java EE7)
+* Payara Web ML 4.1.1.163 (Java EE7)
 * Jersey MVC
-* Apache Shiro 1.2
+* Apache Shiro 1.3
 
 setup
 --------

@@ -1,19 +1,14 @@
-<%--
-    Document   : index
-    Created on : 2014/12/03, 21:18:03
-    Author     : agetsuma
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://suke_masa.com/thymeleaf/shiro">
     <head>
         <meta charset="utf-8" />
         <title>Apache Shiro Sample</title>
-        <link rel="stylesheet" href="/ShiroSample/css/bootstrap.min.css" media="screen" />
-        <link ref="stylesheet" href="/ShiroSample/css/bootstrapValidator.min.css" media="screen" />
+        <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+              href="../../css/bootstrap.min.css" media="screen" />
+        <link ref="stylesheet" th:href="@{/css/bootstrapValidator.min.css}"
+              href="../../css/bootstrapValidator.min.css" media="screen" />
     </head>
     <body>
         <!--
@@ -26,46 +21,48 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <form action="/ShiroSample/users/sign_up" id="signupForm" class="form-horizontal" method="post">
+                    <form th:action="@{/users/sign_up}"
+                          action="./index.html"
+                          id="signupForm" class="form-horizontal" method="post">
                         <h4>Sign Up</h4>
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="inputEmail">Email</label>
                             <div class="col-md-8">
-                                <input type="email" id="inputEmail" class="form-control" name="email" placeholder="e.g. yourname@gmail.com" >
+                                <input type="email" id="inputEmail" class="form-control" name="email" placeholder="e.g. yourname@gmail.com" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="inputPassword">Password</label>
                             <div class="col-md-8">
-                                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Min. 8 Characters">
+                                <input type="password" id="inputPassword" class="form-control" name="password" placeholder="Min. 8 Characters" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="confirmPassword">Confirm Password</label>
                             <div class="col-md-8">
-                                <input type="password" id="confirmPassword" class="form-control" name="confirmPassword" placeholder="retype password for confirm">
+                                <input type="password" id="confirmPassword" class="form-control" name="confirmPassword" placeholder="retype password for confirm" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="firstName">First Name</label>
                             <div class="col-md-8">
-                                <input type="text" id="firstName" class="form-control" name="firstName">
+                                <input type="text" id="firstName" class="form-control" name="firstName" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label" for="lastName">Last Name</label>
                             <div class="col-md-8">
-                                <input type="text" id="lastName" class="form-control" name="lastName">
+                                <input type="text" id="lastName" class="form-control" name="lastName" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Role</label>
                             <div class="col-md-8">
                                 <label class="radio-inline">
-                                    <input type="radio" name="role"  value="STAFF" checked> staff
+                                    <input type="radio" name="role"  value="STAFF" checked="checked">staff</input>
                                 </label>
                                 <label class="radio-inline">
-                                    <input type="radio" name="role"  value="MANAGER"> manager
+                                    <input type="radio" name="role"  value="MANAGER">manager</input>
                                 </label>
                             </div>
                         </div>
@@ -75,6 +72,7 @@
                                     <label class="checkbox">
                                         <input type="checkbox" id="confirmTerm" name="confirmTerm" value="true">
                                         I agree all your Terms of Services
+                                        </input>
                                     </label>
                                 </div>
                             </div>
@@ -88,26 +86,28 @@
                     </form>
                 </div><!-- col-md-6 -->
                 <div class="col-md-6">
-                    <shiro:guest>
-                        <form action="/ShiroSample/users/sign_in" id="signinForm" class="form-horizontal" method="post">
+                    <div shiro:guest>
+                        <form th:action="@{/users/sign_in}"
+                              action="./index.html"
+                              id="signinForm" class="form-horizontal" method="post">
                             <h4>Sign In</h4>
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="signinEmail">Email</label>
                                 <div class="col-md-8">
-                                    <input type="email" id="signinEmail" class="form-control" name="email" placeholder="e.g. yourname@gmail.com" >
+                                    <input type="email" id="signinEmail" class="form-control" name="email" placeholder="e.g. yourname@gmail.com" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label" for="signinPassword">Password</label>
                                 <div class="col-md-8">
-                                    <input type="password" id="signinPassword" name="password" class="form-control" placeholder="Min. 8 Characters" >
+                                    <input type="password" id="signinPassword" name="password" class="form-control" placeholder="Min. 8 Characters" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-3 col-md-9">
                                     <div class="checkbox">
                                         <label class="checkbox">
-                                            <input type="checkbox" name="keepsigned" value="true">Keep me signed in
+                                            <input type="checkbox" name="keepsigned" value="true">Keep me signed in</input>
                                         </label>
                                     </div>
                                 </div>
@@ -118,38 +118,40 @@
                                 </div>
                             </div>
                         </form>
-                    </shiro:guest>
-                    <shiro:notAuthenticated>
-                        <shiro:user>
-                            <h3>Welcome back <shiro:principal/> !</h3>
-                            <form action="/ShiroSample/users/logout" method="post">
-                                <p>Not <shiro:principal/> ?</p>
+                    </div>
+                    <div shiro:notAuthenticated>
+                        <div shiro:user>
+                            <h3>Welcome back <span shiro:principal>foo@sample.com</span> !</h3>
+                            <form th:action="@{/users/logout}"
+                                  action="/ShiroSample/users/logout" method="post">
+                                <p>Not <span shiro:principal>foo@sample.com</span> ?</p>
                                 <p>Please signin <button type="submit" class="btn btn-link">here</button></p>
                             </form>
-                        </shiro:user>
-                    </shiro:notAuthenticated>
-                    <shiro:authenticated>
-                        <h3>Hello, <shiro:principal/></h3>
-                        <form action="/ShiroSample/users/logout" method="post">
+                        </div>
+                    </div>
+                    <div shiro:authenticated>
+                        <h3>Hello, <span shiro:principal>foo@sample.com</span></h3>
+                        <form th:action="@{/users/logout}"
+                              action="./index.html" method="post">
                             <div class="form-group">
                                 <button type="submit" id="logout-button" class="btn btn-primary">logout</button>
                             </div>
                         </form>
-                    </shiro:authenticated>
+                    </div>
                 </div><!-- col-md-6 -->
             </div><!-- .row -->
 
             <div class="page-header">
                 <h1>Apache Shiro <span class="text-info">Autholization</span></h1>
             </div>
-            <shiro:notAuthenticated>
+            <div shiro:notAuthenticated>
                 <h4>Please signin mamager role user.</h4>
-            </shiro:notAuthenticated>
-            <shiro:authenticated>
-                <shiro:lacksRole name="MANAGER">
+            </div>
+            <div shiro:authenticated>
+                <div shiro:lacksRole="MANAGER">
                     <h4>STAFF role can't refer user account list.</h4>
-                </shiro:lacksRole>
-                <shiro:hasRole name="MANAGER">
+                </div>
+                <div shiro:hasRole="MANAGER">
                     <h3>list users</h3>
                     <table class="table table-hover">
                         <thead>
@@ -160,19 +162,33 @@
                         <th>Role</th>
                         </thead>
                         <tbody>
-                            <c:forEach var="account" items="${model}">
-                                <tr>
-                                    <td>${account.id}</td>
-                                    <td>${account.email}</td>
-                                    <td>${account.firstName}</td>
-                                    <td>${account.lastName}</td>
-                                    <td>${account.userRole}</td>
-                                </tr>
-                            </c:forEach>
+                            <tr th:each="account : ${accountList}">
+                                <td th:text="${account.id}">Dummy ID</td>
+                                <td th:text="${account.email}">dummy@mail.com</td>
+                                <td th:text="${account.firstName}">John</td>
+                                <td th:text="${account.lastName}">Doe</td>
+                                <td th:text="${account.userRole}">Manager</td>
+                            </tr>
+                            <!--/*-->
+                            <tr>
+                                <td>Dummy ID2</td>
+                                <td>dummy2@mail.com</td>
+                                <td>John2</td>
+                                <td>Doe2</td>
+                                <td>Staff</td>
+                            </tr>
+                            <tr>
+                                <td>Dummy ID3</td>
+                                <td>dummy3@mail.com</td>
+                                <td>John3</td>
+                                <td>Doe3</td>
+                                <td>Staff</td>
+                            </tr>
+                            <!--*/-->
                         </tbody>
                     </table>
-                </shiro:hasRole>
-            </shiro:authenticated>
+                </div>
+            </div>
 
         </div><!-- .container -->
 
@@ -204,9 +220,9 @@
             </div>
         </div><!-- modal -->
 
-        <script src="/ShiroSample/js/jquery-1.11.1.min.js"></script>
-        <script src="/ShiroSample/js/bootstrap.min.js"></script>
-        <script src="/ShiroSample/js/bootstrapValidator/bootstrapValidator.min.js"></script>
-        <script src="/ShiroSample/js/shirosample.js"></script>
+        <script th:src="@{/js/jquery-1.11.1.min.js}" src="../../js/jquery-1.11.1.min.js"></script>
+        <script th:src="@{/js/bootstrap.min.js}" src="../../js/bootstrap.min.js"></script>
+        <script th:src="@{/js/bootstrapValidator/bootstrapValidator.min.js}" src="../../js/bootstrapValidator/bootstrapValidator.min.js"></script>
+        <script th:src="@{/js/shirosample.js}" src="../../js/shirosample.js"></script>
     </body>
 </html>

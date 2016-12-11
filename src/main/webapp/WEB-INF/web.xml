@@ -24,7 +24,7 @@
             <param-name>javax.ws.rs.Application</param-name>
             <param-value>net.agetsuma.sample.shiro.rest.application.config.ApplicationConfig</param-value>
         </init-param>
-        <!-- pass to next filter if Jersey/App returns 404 -->
+        <!--pass to next filter if Jersey/App returns 404-->
         <init-param>
             <param-name>jersey.config.servlet.filter.forwardOn404</param-name>
             <param-value>true</param-value>
