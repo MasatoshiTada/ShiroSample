@@ -4,6 +4,7 @@ ShiroSample
 Apache Shiro 1.3 JDBC Realm sample.
 
 Original : Norito AGETSUMA (@n_agetsu)
+
 Upgrade to 1.3 + Thymeleaf : Masatoshi Tada (@suke_masa)
 
 ![screenshot](site/screen.png)
